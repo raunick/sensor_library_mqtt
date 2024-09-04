@@ -1,7 +1,6 @@
 from sensor_library.sensors.manager import SensorManager
 
 manager = SensorManager()
-
 params = {
     'sensor_name': 'sensor_1',
     'broker': 'localhost',
