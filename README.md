@@ -90,10 +90,6 @@ manager.add_sensor({
     'sensor_type': 'humidity_air'
 })
 
-manager.add_sensor(params)
-manager.start()
-
-
 manager.start()
 ```
 # 🛡️ Segurança e Confiabilidade
