@@ -7,7 +7,7 @@ Bem-vindo à **Sensor Library**! 🎉 Essa biblioteca Python foi projetada para 
 Você pode instalar a biblioteca diretamente do PyPi com o comando abaixo:
 
 ```bash
-pip install sensor_library
+pip install PySensor-Mqtt==0.1
 ```
 # 🛠️ Funcionalidades
 
