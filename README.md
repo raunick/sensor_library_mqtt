@@ -7,7 +7,7 @@ Bem-vindo à **Sensor Library**! 🎉 Essa biblioteca Python foi projetada para 
 Você pode instalar a biblioteca diretamente do PyPi com o comando abaixo:
 
 ```bash
-pip install PySensor-Mqtt==0.1
+pip install PySensor-Mqtt
 ```
 # 🛠️ Funcionalidades
 
@@ -24,7 +24,7 @@ Aqui está um exemplo de como configurar e iniciar a biblioteca:
 **1. Crie um Gerenciador de Sensores**
 
 ```python
-from sensor_library.sensors.manager import SensorManager
+from sensor_library import SensorManager
 
 manager = SensorManager()
 ```
@@ -67,10 +67,13 @@ Aqui estão os tipos de sensores que você pode adicionar à biblioteca:
 
 ## Exemplo de Adição de Múltiplos Sensores
 ```python
+from sensor_library import SensorManager
+
+manager = SensorManager()
 # Adiciona um sensor de temperatura
 manager.add_sensor({
     'sensor_name': 'temp_sensor',
-    'broker': 'localhost',
+    'broker': 'broker.mqtt.cool',
     'port': 1883,
     'topic': 'sensor/temperature',
     'update_interval': 5,
@@ -80,12 +83,16 @@ manager.add_sensor({
 # Adiciona um sensor de umidade do ar
 manager.add_sensor({
     'sensor_name': 'humidity_sensor',
-    'broker': 'localhost',
+    'broker': 'broker.mqtt.cool',
     'port': 1883,
     'topic': 'sensor/humidity_air',
     'update_interval': 10,
     'sensor_type': 'humidity_air'
 })
+
+manager.add_sensor(params)
+manager.start()
+
 
 manager.start()
 ```
