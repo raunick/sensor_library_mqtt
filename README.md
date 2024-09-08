@@ -24,7 +24,7 @@ Aqui está um exemplo de como configurar e iniciar a biblioteca:
 **1. Crie um Gerenciador de Sensores**
 
 ```python
-from sensor_library import SensorManager
+from PySensorMQTT import SensorManager
 
 manager = SensorManager()
 ```
@@ -67,7 +67,7 @@ Aqui estão os tipos de sensores que você pode adicionar à biblioteca:
 
 ## Exemplo de Adição de Múltiplos Sensores
 ```python
-from sensor_library import SensorManager
+from PySensorMQTT import SensorManager
 
 manager = SensorManager()
 # Adiciona um sensor de temperatura
