@@ -1,10 +1,10 @@
 import time
-from sensor_library.sensors.temperature import TemperatureSensor
-from sensor_library.sensors.humidity_air import HumidityAirSensor
-from sensor_library.sensors.humidity_soil import HumiditySoilSensor
-from sensor_library.sensors.light import LightSensor
-from sensor_library.sensors.motion import MotionSensor
-from sensor_library.sensors.modulo_rele import ModuloRele
+from PySensorMQTT.sensors.temperature import TemperatureSensor
+from PySensorMQTT.sensors.humidity_air import HumidityAirSensor
+from PySensorMQTT.sensors.humidity_soil import HumiditySoilSensor
+from PySensorMQTT.sensors.light import LightSensor
+from PySensorMQTT.sensors.motion import MotionSensor
+from PySensorMQTT.sensors.modulo_rele import ModuloRele
 
 class SensorManager:
     def __init__(self) -> None:

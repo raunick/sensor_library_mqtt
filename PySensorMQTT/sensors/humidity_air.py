@@ -1,4 +1,4 @@
-from sensor_library.sensors.base import SensorBase
+from PySensorMQTT.sensors.base import SensorBase
 import random
 
 class HumidityAirSensor(SensorBase):
@@ -10,7 +10,7 @@ class HumidityAirSensor(SensorBase):
         humidity = self.generate_humidity_air()
         if humidity is not None and isinstance(humidity, float):
             payload = f"Humidity Air: {humidity}"
-            self.client.publish(self.parameters['topic'], payload)
+            self.mqtt_client.publish(self.parameters['topic'], payload)
             print(f"Publicado: {payload}")
         else:
             print("Falha na geração de umidade do ar.")

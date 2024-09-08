@@ -1,7 +1,5 @@
-# sensors/temperature.py
-
-from sensor_library.sensors.base import SensorBase
 import random
+from PySensorMQTT.sensors.base import SensorBase
 
 class TemperatureSensor(SensorBase):
     def generate_temperature(self) -> float:

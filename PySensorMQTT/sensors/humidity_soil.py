@@ -1,4 +1,4 @@
-from sensor_library.sensors.base import SensorBase
+from PySensorMQTT.sensors.base import SensorBase
 import random
 
 # Sensor de umidade do solo
@@ -9,5 +9,5 @@ class HumiditySoilSensor(SensorBase):
     def publish(self) -> None:
         humidity = self.generate_humidity_soil()
         payload = f"Humidity Soil: {humidity}"
-        self.client.publish(self.parameters['topic'], payload)
+        self.mqtt_client.publish(self.parameters['topic'], payload)
         print(f"Publicado: {payload}")

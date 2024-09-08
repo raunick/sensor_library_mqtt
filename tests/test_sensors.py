@@ -1,6 +1,6 @@
 import unittest
-from sensor_library.sensors.temperature import TemperatureSensor
-from sensor_library.sensors.base import MqttParameters
+from PySensorMQTT.sensors.temperature import TemperatureSensor
+from PySensorMQTT.sensors.base import MqttParameters
 
 class TestTemperatureSensor(unittest.TestCase):
     def test_generate_temperature(self):

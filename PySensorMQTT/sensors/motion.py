@@ -1,5 +1,5 @@
-from sensor_library.sensors.base import SensorBase
 import random
+from PySensorMQTT.sensors.base import SensorBase
 
 # Sensor de movimento
 class MotionSensor(SensorBase):
@@ -9,5 +9,5 @@ class MotionSensor(SensorBase):
     def publish(self) -> None:
         motion = self.generate_motion()
         payload = f"Motion: {motion}"
-        self.client.publish(self.parameters['topic'], payload)
+        self.mqtt_client.publish(self.parameters['topic'], payload)
         print(f"Publicado: {payload}")

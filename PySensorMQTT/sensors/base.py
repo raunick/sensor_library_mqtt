@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from sensor_library.mqtt_sensor import MqttClient
 from typing import TypedDict
+from PySensorMQTT.mqtt_sensor import MqttClient
 
 class MqttParameters(TypedDict):
     sensor_name: str
