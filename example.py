@@ -1,27 +1,39 @@
-from PySensorMQTT import MqttParameters, SensorManager
-
+# exemple.py
+from PySensorMQTT import SensorManager,MqttParameters
 
 def main():
     # Dados do Broker MQTT
+    """
+    Inicializa o gerenciamento dos sensores, adicionando-os ao
+    SensorManager e iniciando a execu o dos mesmos.
+
+    :raises: Exce o caso n o seja poss vel conectar ao broker MQTT
+    """
     broker = "broker.mqtt.cool"
     porta = 1883
     topic = 'sensors'
+
+    # Lista de sensores com seus respectivos IDs
     sensores = ['temperature', 'humidity_air', 'humidity_soil', 'light', 'motion', 'modulo_rele']
     
     # Crie uma instância do SensorManager
     manager = SensorManager()
     
     # Adicione os sensores ao SensorManager
-    for sensor_type in sensores:
+    for sensor in sensores:
+        id = f'Iot_{sensor}_01'
+        device_id = id.upper()
+
         parameters = MqttParameters(
             broker=broker,
             port=porta,
-            topic=f'{topic}/{sensor_type}',
-            update_interval=30,  # Intervalo de atualização em segundos
-            sensor_type=sensor_type
+            topic=f'{topic}/{sensor}',
+            update_interval=15,  # Intervalo de atualização em segundos
+            sensor_type=sensor,
+            device_id=device_id  # Passando o ID do dispositivo
         )
         manager.add_sensor(parameters)
-        print(f'Adicionando sensor: {sensor_type}')
+        print(f'Adicionando sensor: {sensor} com ID: {device_id}')
     
     # Inicie o gerenciamento dos sensores
     print('Sensores adicionados com sucesso!')
