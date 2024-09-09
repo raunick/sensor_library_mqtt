@@ -27,10 +27,10 @@ class HumidityAirSensor(SensorBase):
             action = action_message.get("action")
 
             if device_id == self.parameters.device_id:
-                if action == "deactivate":
+                if action == "off":
                     self.status = "desativado"
                     print(f"Dispositivo {self.parameters.device_id} desativado.")
-                elif action == "activate":
+                elif action == "on":
                     self.status = "ativo"
                     print(f"Dispositivo {self.parameters.device_id} ativado.")
         except Exception as e:
@@ -43,7 +43,6 @@ class HumidityAirSensor(SensorBase):
             if self.status == "ativo":
                 humidity = self.generate_humidity()
                 battery_level = self.get_battery_level()
-                timestamp = datetime.utcnow().isoformat()
 
                 payload = {
                     "device_id": self.parameters.device_id,
@@ -62,7 +61,7 @@ class HumidityAirSensor(SensorBase):
                     "unit": "%",
                     "status": self.status.upper(),
                     "battery_level": "-",
-                    "timestamp": datetime.utcnow().isoformat()
+                    "timestamp": timestamp
                 }
 
             self.mqtt_client.publish(self.parameters.topic, payload)

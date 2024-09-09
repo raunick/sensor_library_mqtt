@@ -108,7 +108,7 @@ Agora é possível ativar ou desativar sensores remotamente via mensagens MQTT. 
 ```json
 {
   "device_id": "TEMP001",
-  "action": "deactivate"
+  "action": "off"
 }
 ```
 
@@ -117,7 +117,7 @@ Para reativar o sensor:
 ```json
 {
   "device_id": "TEMP001",
-  "action": "activate"
+  "action": "on"
 }
 ```
 

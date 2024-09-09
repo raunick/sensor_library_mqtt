@@ -94,25 +94,25 @@ class TestTemperatureSensor(unittest.TestCase):
         self.assertIn("data", payload)  # Atualizando para "data" ao invés de "temperature"
         self.assertEqual(payload["data"], "-")  # Verifica se o valor "data" é "-" para o sensor desativado
 
-    def test_on_action_message_activate(self):
+    def test_on_action_message_on(self):
         # Teste para ativar o sensor via o tópico de ação
         """
         Verifica se o método on_action_message ativa o sensor corretamente
-        quando recebe uma mensagem de ação com o valor "activate".
+        quando recebe uma mensagem de ação com o valor "on".
         """
         
-        message_payload = '{"device_id": "STEMP01", "action": "activate"}'
+        message_payload = '{"device_id": "STEMP01", "action": "on"}'
         message = type('Message', (object,), {'payload': message_payload.encode()})
         self.sensor.on_action_message(None, None, message)
         self.assertEqual(self.sensor.status, "ativo")
 
-    def test_on_action_message_deactivate(self):
+    def test_on_action_message_off(self):
         # Teste para desativar o sensor via o tópico de ação
         """
         Verifica se o método on_action_message desativa o sensor corretamente
-        quando recebe uma mensagem de ação com o valor "deactivate".
+        quando recebe uma mensagem de ação com o valor "off".
         """
-        message_payload = '{"device_id": "STEMP01", "action": "deactivate"}'
+        message_payload = '{"device_id": "STEMP01", "action": "off"}'
         message = type('Message', (object,), {'payload': message_payload.encode()})
         self.sensor.on_action_message(None, None, message)
         self.assertEqual(self.sensor.status, "desativado")

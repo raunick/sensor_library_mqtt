@@ -30,10 +30,10 @@ class TemperatureSensor(SensorBase):
 
             # Verifica se a ação é para este dispositivo
             if device_id == self.parameters.device_id:
-                if action == "deactivate":
+                if action == "off":
                     self.status = "desativado"
                     print(f"Dispositivo {self.parameters.device_id} desativado.")
-                elif action == "activate":
+                elif action == "on":
                     self.status = "ativo"
                     print(f"Dispositivo {self.parameters.device_id} ativado.")
         except Exception as e:

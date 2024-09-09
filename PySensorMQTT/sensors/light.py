@@ -27,11 +27,11 @@ class LightSensor(SensorBase):
             action = action_message.get("action")
 
             if device_id == self.parameters.device_id:
-                if action == "deactivate":
+                if action == "off":
                     self.status = "desativado"
                     print(f"Dispositivo {self.parameters.device_id} desativado.")
                 elif action == "activate":
-                    self.status = "ativo"
+                    self.status = "on"
                     print(f"Dispositivo {self.parameters.device_id} ativado.")
         except Exception as e:
             print(f"Erro ao processar a mensagem de ação: {e}")
@@ -62,7 +62,7 @@ class LightSensor(SensorBase):
                     "unit": "lux",
                     "status": self.status.upper(),
                     "battery_level": "-",
-                    "timestamp": datetime.utcnow().isoformat()
+                    "timestamp": timestamp
                 }
 
             self.mqtt_client.publish(self.parameters.topic, payload)

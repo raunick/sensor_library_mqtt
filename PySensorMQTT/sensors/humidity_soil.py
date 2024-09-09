@@ -27,28 +27,27 @@ class HumiditySoilSensor(SensorBase):
             action = action_message.get("action")
 
             if device_id == self.parameters.device_id:
-                if action == "deactivate":
+                if action == "off":
                     self.status = "desativado"
                     print(f"Dispositivo {self.parameters.device_id} desativado.")
                 elif action == "activate":
-                    self.status = "ativo"
+                    self.status = "on"
                     print(f"Dispositivo {self.parameters.device_id} ativado.")
         except Exception as e:
             print(f"Erro ao processar a mensagem de ação: {e}")
 
     def publish(self) -> None:
         try:
+            timestamp = datetime.now(timezone.utc).isoformat()
             if self.status == "ativo":
                 humidity = self.generate_humidity()
                 battery_level = self.get_battery_level()
-                timestamp = datetime.utcnow().isoformat()
-
                 payload = {
                     "device_id": self.parameters.device_id,
                     "sensor_type": self.parameters.sensor_type,
                     "data": humidity,
                     "unit": "%",
-                    "status": self.status,
+                    "status": self.status.upper(),
                     "battery_level": battery_level,
                     "timestamp": timestamp
                 }
@@ -58,9 +57,9 @@ class HumiditySoilSensor(SensorBase):
                     "sensor_type": self.parameters.sensor_type,
                     "data": "-",
                     "unit": "%",
-                    "status": self.status,
+                    "status": self.status.upper(),
                     "battery_level": "-",
-                    "timestamp": datetime.utcnow().isoformat()
+                    "timestamp": timestamp
                 }
 
             self.mqtt_client.publish(self.parameters.topic, payload)
